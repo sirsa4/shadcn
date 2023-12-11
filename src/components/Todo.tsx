@@ -1,3 +1,5 @@
+import { TodoType } from "@/lib/types";
+import { Button } from "./ui/button";
 import {
   Card,
   CardContent,
@@ -6,18 +8,32 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+import { Switch } from "./ui/switch";
 
-const Todo = () => {
+const Todo = ({ todo }: { todo: TodoType }) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Todo title</CardTitle>
-        <CardDescription>Status: </CardDescription>
+        <CardTitle>{todo.title}</CardTitle>
+        <CardDescription>
+          Status: {todo.complete ? "completed" : "not complete"}
+        </CardDescription>
       </CardHeader>
       <CardContent>
-        <p>Todo text</p>
+        <p>{todo.text}</p>
+
+        <Button variant={`secondary`} className="bg-green-300">
+          Complete todo
+        </Button>
+        {/* <div className="flex items-center space-x-2 ">
+          <Switch id="complete" />
+          <label htmlFor="complete">Complete</label>
+        </div> */}
       </CardContent>
-      <CardFooter>todo.date created: 23.09 | Date completed: 25.09 </CardFooter>
+      <CardFooter>
+        Created: {todo.createdAt.split("").splice(0, 10)} | Completed:
+        {todo.complete ? "yes" : "no"}
+      </CardFooter>
     </Card>
   );
 };

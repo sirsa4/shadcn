@@ -11,8 +11,10 @@ datasource db {
 }
 
 model Todo {
-  id       String  @id @unique @default(uuid())
-  title    String
-  text     String
-  complete Boolean @default(false)
+  id        String   @id @unique @default(uuid())
+  title     String
+  text      String
+  complete  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
 }
