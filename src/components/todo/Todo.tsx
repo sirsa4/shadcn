@@ -28,8 +28,11 @@ const Todo = ({ todo }: { todo: TodoType }) => {
           <Switch id="complete" />
           <label htmlFor="complete">Complete</label>
         </div> */}
+        <div className="flex gap-4">
+          <CompleteBtn id={todo.id} txt="Complete todo" type="complete" />
+          <CompleteBtn id={todo.id} txt="Delete todo" type="delete" />
+        </div>
       </CardContent>
-      <CompleteBtn id={todo.id} />
       <CardFooter>
         Created: unknow | Completed:
         {todo.complete ? "yes" : "no"}

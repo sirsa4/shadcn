@@ -1,15 +1,23 @@
 "use client";
-import { completeTodo } from "../../../actions/FormAction";
+import { completeTodo, deleteTodo } from "../../../actions/FormAction";
 import { Button } from "../ui/button";
 
-const CompleteBtn = ({ id }: { id: string }) => {
+const CompleteBtn = ({
+  id,
+  type,
+  txt,
+}: {
+  id: string;
+  type: string;
+  txt: string;
+}) => {
   return (
     <Button
       variant={`secondary`}
-      onClick={() => completeTodo(id)}
+      onClick={() => (type === "complete" ? completeTodo(id) : deleteTodo(id))}
       className="bg-green-300"
     >
-      Complete todo
+      {txt}
     </Button>
   );
 };

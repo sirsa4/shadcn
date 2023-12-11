@@ -49,4 +49,5 @@ export const deleteTodo = async (id: string) => {
   } catch (error) {
     console.log(error);
   }
+  revalidatePath("/todos");
 };
