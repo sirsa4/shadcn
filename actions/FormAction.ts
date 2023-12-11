@@ -17,3 +17,36 @@ export const addTodo = async (FormData: FormData) => {
   });
   revalidatePath("/todos");
 };
+
+export const completeTodo = async (id: string) => {
+  try {
+    const oldTodo = await prisma.todo.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    const updatedTodo = await prisma.todo.update({
+      where: {
+        id: id,
+      },
+      data: {
+        complete: oldTodo?.complete ? false : true,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  revalidatePath("/todos");
+};
+
+export const deleteTodo = async (id: string) => {
+  try {
+    const deletedTodo = await prisma.todo.delete({
+      where: {
+        id: id,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

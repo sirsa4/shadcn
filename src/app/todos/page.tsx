@@ -1,4 +1,4 @@
-import Todo from "@/components/Todo";
+import Todo from "@/components/todo/Todo";
 import Form from "@/components/todo/Form";
 import { Button } from "@/components/ui/button";
 import prisma from "@/lib/prisma";
@@ -6,9 +6,9 @@ import { TodoType } from "@/lib/types";
 import Link from "next/link";
 
 const Todos = async () => {
-  //const todos = await prisma.todo.findMany();
-  const res = await fetch("http://localhost:3000/api/todo");
-  const todos = (await res.json()) as TodoType[];
+  const todos = await prisma.todo.findMany();
+  //const res = await fetch("http://localhost:3000/api/todo");
+  //const todos = (await res.json()) as TodoType[];
   return (
     <main>
       <header>

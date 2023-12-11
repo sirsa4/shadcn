@@ -1,5 +1,6 @@
 import { TodoType } from "@/lib/types";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
+import prisma from "@/lib/prisma";
 import {
   Card,
   CardContent,
@@ -7,8 +8,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card";
-import { Switch } from "./ui/switch";
+} from "../ui/card";
+import { Switch } from "../ui/switch";
+import CompleteBtn from "./CompleteBtn";
 
 const Todo = ({ todo }: { todo: TodoType }) => {
   return (
@@ -22,16 +24,14 @@ const Todo = ({ todo }: { todo: TodoType }) => {
       <CardContent>
         <p>{todo.text}</p>
 
-        <Button variant={`secondary`} className="bg-green-300">
-          Complete todo
-        </Button>
         {/* <div className="flex items-center space-x-2 ">
           <Switch id="complete" />
           <label htmlFor="complete">Complete</label>
         </div> */}
       </CardContent>
+      <CompleteBtn id={todo.id} />
       <CardFooter>
-        Created: {todo.createdAt.split("").splice(0, 10)} | Completed:
+        Created: unknow | Completed:
         {todo.complete ? "yes" : "no"}
       </CardFooter>
     </Card>
